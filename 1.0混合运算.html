@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="教育，生活，科技，认知">
+<meta name="keywords" content="小学数学四则混合运算辅助学习">
+<title>小学数学四则混合运算辅助学习</title>
+<style>
+/* ===================== 基础样式 ===================== */
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:#fff;
+    color:#212529;
+    text-align:center;
+}
+h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;font-weight:600;}
+p{margin:0 0 .6rem;color:#333;font-size:1rem;line-height:1.8;}
+a{color:#007bff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+ul{margin:0;padding:0;list-style:none;}
+hr{border:0;border-top:1px solid #e9ecef;margin:1rem 0;}
+
+.container{width:100%;max-width:1140px;margin:0 auto;padding:0 15px;}
+.w3pvt-title{font-size:1.6rem;color:#2a419f;font-weight:700;margin:18px 0 10px;}
+.body_container{margin:0 auto;text-align:left;}
+.cont_banner-text{padding:.5rem 0 0;}
+
+.highlight-link{font-size:1.5em;margin-right:5px;display:inline;}
+.highlight-link-text{
+    color:#fff;background-color:#007BFF;padding:5px 10px;
+    border-radius:5px;text-decoration:none;display:inline-block;
+}
+.highlight-link-text:hover{background-color:#35b53e;color:#fff;text-decoration:none;}
+
+footer{
+    background-color:#f8f9fa;padding:20px;text-align:center;
+    font-size:14px;color:#333;border-top:1px solid #e7e7e7;margin-top:24px;
+}
+.footer-content{max-width:1200px;margin:0 auto;}
+.record-number a{color:#007bff;text-decoration:none;}
+.record-number a:hover{text-decoration:underline;}
+
+/* ===================== 计算器区域（原 size_n.css，已把 mathAreaF 底色改为白色） ===================== */
+.inputarea{
+    background:#ffffff;
+    padding-top:.6rem;
+    max-width:32.5rem;
+    height:auto;
+    font-size:1.5rem;
+    margin:0 auto;
+}
+
+.itistitle{font-size:1.9rem;}
+
+.pickerf{
+    margin:0 auto;
+    padding:.2rem 0;
+    overflow:auto;
+    text-align:center;
+}
+
+.jickerf{
+    margin:.05rem;
+    padding:.2rem;
+    width:2.8rem;
+    height:2.7rem;
+    font-size:2.0rem;
+    text-align:center;
+    vertical-align:middle;
+    display:inline-block;
+}
+
+.square_button{
+    width:2.8rem;
+    height:2.7rem;
+    font-size:1.5rem;
+    text-align:center;
+    border-radius:8px;
+    color:#0000ff;
+    background:#ffffff;
+    border:1px solid #cfcfcf;
+    cursor:pointer;
+    display:inline-block !important;   /* 覆盖 JS 里的 display:inline，保证按钮尺寸一致 */
+    transition:background .2s,color .2s;
+}
+.square_button:hover:not(:disabled){background:#eef4ff;}
+.square_button:disabled{cursor:not-allowed;opacity:.65;}
+
+.formulatext{
+    display:inline-block;
+    padding:.2rem .5rem;
+    font-size:1.2rem;
+    min-height:1.8rem;
+    line-height:1.6rem;
+    width:16.2rem;
+    max-width:70%;
+    color:#ffffff;
+    background-color:#cc0000;
+    border-radius:6px;
+    vertical-align:middle;
+    text-align:left;
+    word-break:break-all;
+    overflow:hidden;
+}
+
+.infotip{
+    display:inline-block;
+    margin-left:.5rem;
+    font-size:.9rem;
+    color:#cc0000;
+    vertical-align:middle;
+}
+
+.creatediv_do{
+    margin:.2rem;
+    text-align:center;
+}
+
+.M_buttonA{
+    width:8.0rem;
+    height:2.4rem;
+    font-size:1.1rem;
+    border-radius:8px;
+    border:1px solid #cfcfcf;
+    background:#ffffff;
+    color:#000000;
+    cursor:pointer;
+    transition:background .2s;
+}
+.M_buttonA:not(:disabled){background:#e8f5ff;}
+.M_buttonA:disabled{cursor:not-allowed;opacity:.65;}
+
+/* 脱式计算结果显示区：底色改为白色 */
+.mathAreaF{
+    height:20rem;
+    margin:.4rem auto;
+    padding:.6rem;
+    overflow:auto;
+    max-width:32.5rem;
+    font-size:1.7rem;
+    background-color:#ffffff;      /* ← 原来是 #ffccff 粉红色，现改为白色 */
+    color:#000000;
+    border:1px solid #e6e6e6;
+    border-radius:6px;
+    text-align:left;
+    line-height:1.7;
+    box-sizing:border-box;
+    word-break:break-all;
+}
+
+@media (max-width:520px){
+    html{font-size:14px;}
+    .mathAreaF{font-size:1.3rem;height:16rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="home">
+    <header>
+        <div class="container">
+            <div class="header">
+                <div class="header-wthree">
+                    <h1 style="font-size:1.1rem;color:#2a419f;margin:12px 0;">小学数学四则混合运算辅助学习</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<section id="content_stats">
+    <div class="container">
+        <div class="w3-stats">
+            <h3 class="w3pvt-title">小学数学四则混合运算辅助学习</h3>
+            <div class="body_container">
+                <div class="cont_banner-text">
+                    <div class="test">
+                        <p>
+                            本工具可以实现以递等式自动计算小学四则混合运算算式，可用于家长检查作业或者出试卷练习题，方便学校老师、家长和学生。
+                        </p>
+                        <p style="color:#888;font-size:.9rem;">
+                            提示：可以直接用键盘输入数字、运算符、括号，回车或按 “=” 生成计算过程，退格键删除，空格键清空。
+                        </p>
+
+                        <div align="left">
+                            <div id="topArea">
+                                <div class="inputarea" id="inputarea">
+                                    <div class="pickerf">
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_1" onclick="formula_1('1',this)">1</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_2" onclick="formula_1('2',this)">2</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_3" onclick="formula_1('3',this)">3</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_4" onclick="formula_1('4',this)">4</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_5" onclick="formula_1('5',this)">5</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_6" onclick="formula_1('6',this)">6</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_7" onclick="formula_1('7',this)">7</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_8" onclick="formula_1('8',this)">8</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_9" onclick="formula_1('9',this)">9</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_0" onclick="formula_1('0',this)">0</button>
+                                        </div>
+
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" disabled id="numb_dot"
+                                                    onclick="formula_5('.',this)"
+                                                    style="background-color:cccccc;display:block">.</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" disabled id="numb_add"
+                                                    onclick="formula_2('+',this)"
+                                                    style="background-color:cccccc;display:block">+</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" disabled id="numb_sub"
+                                                    onclick="formula_2('-',this)"
+                                                    style="background-color:cccccc;display:block">-</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" disabled id="numb_mul"
+                                                    onclick="formula_2('×',this)"
+                                                    style="background-color:cccccc;display:block">×</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" disabled id="numb_div"
+                                                    onclick="formula_2('÷',this)"
+                                                    style="background-color:cccccc;display:block">÷</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_LeftlitB"
+                                                    onclick="formula_3('(',this)"
+                                                    style="display:inline">(</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_rightlitB"
+                                                    onclick="formula_4(')',this)"
+                                                    style="background-color:cccccc;display:block">)</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_LeftlargeB"
+                                                    onclick="formula_3('[',this)"
+                                                    style="display:inline">[</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_rightlargeB"
+                                                    onclick="formula_4(']',this)"
+                                                    style="background-color:cccccc;display:block">]</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_back"
+                                                    onclick="backspace()">←</button>
+                                        </div>
+                                        <div class="jickerf">
+                                            <button type="button" class="square_button" id="numb_clear"
+                                                    onclick="clearAll()">清</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="pickerf">
+                                        <div class="creatediv_do">
+                                            <button type="button" class="M_buttonA" disabled id="createdivia"
+                                                    onclick="showCalculate()">生成计算过程</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="pickerf">
+                                        <div class="formulatext" id="math_formula"></div>
+                                        <div class="infotip" id="infotip"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="mathArea" class="mathAreaF"></div>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <p>递等式计算又称脱式计算，就是把完整的计算过程逐步写出来，</p>
+                            <p>所谓脱式，就是脱离竖式的意思。</p>
+                            <p>四则混合运算规则如下：</p>
+                            <p>在混合运算中，先算括号内的数，括号从小到大，然后从高级到低级。</p>
+                            <p>1、同级运算时，从左到右依次计算；</p>
+                            <p>2、两级运算时，先算乘除，后算加减。</p>
+                            <p>3、有括号时，先算括号里面的，再算括号外面的；</p>
+                            <p>4、有多层括号时，先算小括号里的，再算中括号里面的，再算大括号里面的，最后算括号外面的。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <p>© 2024 小学口算-学霸小站. All Rights Reserved.</p>
+        <p class="record-number">备案号: <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">京ICP备2024090780号</a></p>
+    </div>
+</footer>
+
+<!-- ==================== 核心脚本（原 math_sizeing.js，去掉画布/竖式相关部分） ==================== -->
+<script type="text/javascript">
+/* ---------- 全局变量 ---------- */
+var dot_state = false;
+var math_stat = 0;
+var math_stat_arr = [0];
+var math_formu_arr = [];
+var math_formu = "";
+
+var listnum_count = 0;
+var Lrkuohu = 0;
+var Likuohu = 0;
+
+var bBlankFormula = false;
+var nScaleMulti = 1;
+
+var gproduct = [];
+var gcur_type = 2;
+
+var math_form = "";
+var math_form_arr = [];
+var pre_factor1 = [];
+var pre_factor2 = [];
+var cur_pre = [];
+
+/* ---------- 工具函数 ---------- */
+function findIn(arr, v) {
+    var i;
+    for (i = 0; i < arr.length; i++)
+        if (arr[i] == v) break;
+    return i < arr.length;
+}
+
+function copyArr(dst, src) {
+    dst.splice(0, dst.length);
+    var i;
+    for (i = 0; i < src.length; i++)
+        dst.push(src[i]);
+}
+
+/* ---------- 退格 ---------- */
+function backspace() {
+    if (math_stat_arr.length <= 1) {
+        clearAll();
+        return;
+    }
+
+    math_formu_arr.pop();
+    math_formu = math_formu_arr.join("");
+    var obj = document.getElementById("math_formula");
+    obj.innerHTML = math_formu;
+
+    var ch = math_stat_arr.pop();
+
+    if (ch >= '0' && ch <= '9' && listnum_count > 0) {
+        listnum_count--;
+        if (listnum_count == 0) dot_state = false;
+    } else if (ch == '[') {
+        if (Lrkuohu > 0) Lrkuohu--;
+    } else if (ch == '(') {
+        if (Likuohu > 0) Likuohu--;
+    } else if (ch == '.') {
+        dot_state = false;
+    }
+
+    math_stat = math_stat_arr[math_stat_arr.length - 1];
+    setButtonStat(math_stat);
+    check_Math();
+}
+
+/* ---------- 按钮状态 ---------- */
+function setButtonStat(stat) {
+    switch (stat) {
+        case 0:
+            disableDigitalStat(false);
+            disableDotStat(true);
+            disableLeftKuohaoStat(false);
+            disableRightKuohaoStat(true);
+            disableCalcuLableStat(true);
+            break;
+        case 1:
+            disableDigitalStat(false);
+            disableDotStat(false);
+            disableLeftKuohaoStat(true);
+            disableRightKuohaoStat(false);
+            disableCalcuLableStat(false);
+            break;
+        case 2:
+            disableDigitalStat(false);
+            disableDotStat(true);
+            disableLeftKuohaoStat(false);
+            disableRightKuohaoStat(true);
+            disableCalcuLableStat(true);
+            break;
+        case 3:
+            disableDigitalStat(false);
+            disableDotStat(true);
+            disableLeftKuohaoStat(false);
+            disableRightKuohaoStat(true);
+            disableCalcuLableStat(true);
+            break;
+        case 4:
+            disableDigitalStat(true);
+            disableDotStat(true);
+            disableLeftKuohaoStat(true);
+            disableRightKuohaoStat(true);
+            disableCalcuLableStat(false);
+            break;
+        case 5:
+            disableDigitalStat(false);
+            disableDotStat(true);
+            disableLeftKuohaoStat(true);
+            disableRightKuohaoStat(true);
+            disableCalcuLableStat(true);
+            break;
+    }
+}
+
+/* ---------- 清空 ---------- */
+function clearAll() {
+    math_formu = "";
+    math_formu_arr.splice(0, math_formu_arr.length);
+
+    var obj = document.getElementById("math_formula");
+    obj.innerHTML = math_formu;
+
+    obj = document.getElementById("mathArea");
+    obj.innerHTML = "";
+
+    disableDigitalStat(false);
+    disableDotStat(true);
+    disableLeftKuohaoStat(false);
+    disableRightKuohaoStat(true);
+    disableCalcuLableStat(true);
+
+    math_stat = 0;
+
+    listnum_count = 0;
+    dot_state = false;
+    Lrkuohu = 0;
+    Likuohu = 0;
+
+    document.getElementById("createdivia").style.backgroundColor = "";
+    document.getElementById("createdivia").disabled = "disabled";
+
+    var tip = document.getElementById("infotip");
+    if (tip) tip.innerHTML = "";
+}
+
+function clearInput() {
+    math_formu = "";
+    math_formu_arr.splice(0, math_formu_arr.length);
+
+    var obj = document.getElementById("math_formula");
+    obj.innerHTML = math_formu;
+
+    disableDigitalStat(false);
+    disableDotStat(true);
+    disableLeftKuohaoStat(false);
+    disableRightKuohaoStat(true);
+    disableCalcuLableStat(true);
+
+    math_stat = 0;
+    dot_state = false;
+    listnum_count = 0;
+    Lrkuohu = 0;
+    Likuohu = 0;
+
+    document.getElementById("createdivia").style.backgroundColor = "";
+    document.getElementById("createdivia").disabled = "disabled";
+}
+
+/* ---------- 各按钮组的启用 / 禁用 ---------- */
+function disableDotStat(bDisable) {
+    var disp, bgc, strDisabled;
+    if (bDisable) {
+        disp = "block"; bgc = "cccccc"; strDisabled = "disabled";
+    } else {
+        disp = "inline-block"; bgc = ""; strDisabled = "";
+    }
+    document.getElementById("numb_dot").style.display = disp;
+    document.getElementById("numb_dot").style.backgroundColor = bgc;
+    document.getElementById("numb_dot").disabled = strDisabled;
+}
+
+function disableDigitalStat(bDisable) {
+    var disp, bgc, strDisabled;
+    if (bDisable) {
+        disp = "block"; bgc = "cccccc"; strDisabled = "disabled";
+    } else {
+        disp = "inline-block"; bgc = ""; strDisabled = "";
+    }
+    var idx;
+    for (idx = 0; idx < 10; idx++) {
+        document.getElementById("numb_" + idx).style.display = disp;
+        document.getElementById("numb_" + idx).style.backgroundColor = bgc;
+        document.getElementById("numb_" + idx).disabled = strDisabled;
+    }
+}
+
+function disableLeftKuohaoStat(bDisable) {
+    var disp, bgc, strDisabled;
+    if (bDisable) {
+        disp = "block"; bgc = "cccccc"; strDisabled = "disabled";
+    } else {
+        disp = "inline-block"; bgc = ""; strDisabled = "";
+    }
+    document.getElementById("numb_LeftlitB").style.display = disp;
+    document.getElementById("numb_LeftlitB").style.backgroundColor = bgc;
+    document.getElementById("numb_LeftlitB").disabled = strDisabled;
+
+    document.getElementById("numb_LeftlargeB").style.display = disp;
+    document.getElementById("numb_LeftlargeB").style.backgroundColor = bgc;
+    document.getElementById("numb_LeftlargeB").disabled = strDisabled;
+}
+
+function disableRightKuohaoStat(bDisable) {
+    var disp, bgc, strDisabled;
+    if (bDisable) {
+        disp = "block"; bgc = "cccccc"; strDisabled = "disabled";
+    } else {
+        disp = "inline-block"; bgc = ""; strDisabled = "";
+    }
+    document.getElementById("numb_rightlitB").style.display = disp;
+    document.getElementById("numb_rightlitB").style.backgroundColor = bgc;
+    document.getElementById("numb_rightlitB").disabled = strDisabled;
+
+    document.getElementById("numb_rightlargeB").style.display = disp;
+    document.getElementById("numb_rightlargeB").style.backgroundColor = bgc;
+    document.getElementById("numb_rightlargeB").disabled = strDisabled;
+}
+
+function disableCalcuLableStat(bDisable) {
+    var disp, bgc, strDisabled;
+    if (bDisable) {
+        disp = "block"; bgc = "cccccc"; strDisabled = "disabled";
+    } else {
+        disp = "inline-block"; bgc = ""; strDisabled = "";
+    }
+    document.getElementById("numb_add").style.display = disp;
+    document.getElementById("numb_add").style.backgroundColor = bgc;
+    document.getElementById("numb_add").disabled = strDisabled;
+
+    document.getElementById("numb_sub").style.display = disp;
+    document.getElementById("numb_sub").style.backgroundColor = bgc;
+    document.getElementById("numb_sub").disabled = strDisabled;
+
+    document.getElementById("numb_mul").style.display = disp;
+    document.getElementById("numb_mul").style.backgroundColor = bgc;
+    document.getElementById("numb_mul").disabled = strDisabled;
+
+    document.getElementById("numb_div").style.display = disp;
+    document.getElementById("numb_div").style.backgroundColor = bgc;
+    document.getElementById("numb_div").disabled = strDisabled;
+}
+
+/* ---------- 判断类函数 ---------- */
+function isCalcuLable(v) {
+    if (v == "+" || v == "-" || v == "×" || v == "÷") return true;
+    return false;
+}
+
+function isNumberic(v) {
+    var val = Number(v);
+    return typeof val === 'number' && !isNaN(val);
+}
+
+function isDigital(v) {
+    if (v >= '0' && v <= '9') return true;
+    return false;
+}
+
+function isLeftKuohao(v) {
+    if (v == '(' || v == '[' || v == '{') return true;
+    return false;
+}
+
+function isRightKuohao(v) {
+    if (v == ')' || v == ']' || v == '}') return true;
+    return false;
+}
+
+function checkPriority(v1, v2) {
+    if ((v1 == '+' || v1 == '-') && (v2 == '+' || v2 == '-') ||
+        (v1 == '×' || v1 == '÷') && (v2 == '×' || v2 == '÷') ||
+        (v1 == '×' || v1 == '÷') && (v2 == '+' || v2 == '-'))
+        return true;
+    return false;
+}
+
+/* ---------- 计算 ---------- */
+function fixedMath(v1, v2, v, cl) {
+    if (cl == '+' || cl == '-') return v;
+    var sv = v.toString();
+    if (sv.indexOf(".") < 0) return v;
+
+    var sv1, sv2;
+    sv1 = v1.toString();
+    sv2 = v2.toString();
+    var pos1 = sv1.indexOf(".");
+    var pos2 = sv2.indexOf(".");
+
+    if (pos1 >= 0) pos1 = sv1.length - sv1.indexOf(".") - 1; else pos1 = 0;
+    if (pos2 >= 0) pos2 = sv2.length - sv2.indexOf(".") - 1; else pos2 = 0;
+
+    var srv;
+    if (cl == '×') {
+        if (pos1 >= pos2) srv = v.toFixed(pos1 + 1);
+        else srv = v.toFixed(pos2 + 1);
+    } else if (cl == '÷') {
+        if (v2 * v == v1) srv = v;
+        else {
+            if (pos1 >= pos2) srv = v.toFixed(pos1 + 2);
+            else srv = v.toFixed(pos2 + 2);
+        }
+    }
+    return srv;
+}
+
+function calcucateMulti(v1, v2) {
+    var sv1 = v1.toString(), sv2 = v2.toString();
+    var pos1 = sv1.indexOf(".");
+    var pos2 = sv2.indexOf(".");
+
+    if (pos1 >= 0) pos1 = sv1.length - sv1.indexOf(".") - 1; else pos1 = 0;
+    if (pos2 >= 0) pos2 = sv2.length - sv2.indexOf(".") - 1; else pos2 = 0;
+
+    var v, sv;
+    if (pos1 == 0) {
+        if (pos2 == 0) {
+            v = v1 * v2;
+        } else {
+            var nv2 = sv2.substr(0, sv2.length - pos2 - 1) + sv2.substr(sv2.length - pos2, pos2);
+            v = v1 * Number(nv2);
+            sv = v.toString();
+            while (sv.length <= pos2) sv = "0" + sv;
+            nv2 = sv.substr(0, sv.length - pos2) + "." + sv.substr(sv.length - pos2, pos2);
+            v = Number(nv2);
+        }
+    } else {
+        var nv1 = sv1.substr(0, sv1.length - pos1 - 1) + sv1.substr(sv1.length - pos1, pos1);
+        if (pos2 == 0) {
+            v = v2 * Number(nv1);
+        } else {
+            var nv2b = sv2.substr(0, sv2.length - pos2 - 1) + sv2.substr(sv2.length - pos2, pos2);
+            v = Number(nv2b) * Number(nv1);
+        }
+        sv = v.toString();
+        pos2 += pos1;
+        while (sv.length <= pos2) sv = "0" + sv;
+        var nv2c = sv.substr(0, sv.length - pos2) + "." + sv.substr(sv.length - pos2, pos2);
+        v = Number(nv2c);
+    }
+    return v;
+}
+
+function processDiv(v1, v2) {
+    var res, i;
+    var s1 = v1.toString();
+    var s2 = v2.toString();
+    var pos1 = s1.indexOf(".");
+    var pos2 = s2.indexOf(".");
+
+    if (pos1 < 0 && pos2 < 0) {
+        res = v1 / v2;
+    } else if (pos1 < 0) {
+        var fact = s2.length - pos2 - 1;
+        var sn = s2.substr(0, pos2) + s2.substr(pos2 + 1, fact);
+        for (i = 0; i < fact; i++) s1 += "0";
+        res = s1 / sn;
+    } else if (pos2 < 0) {
+        var fact2 = s1.length - pos1 - 1;
+        var sn2 = s1.substr(0, pos1) + s1.substr(pos1 + 1, fact2);
+        for (i = 0; i < fact2; i++) s2 += "0";
+        res = sn2 / s2;
+    } else {
+        var f1 = s1.length - pos1 - 1;
+        var f2 = s2.length - pos2 - 1;
+        var n1 = s1.substr(0, pos1) + s1.substr(pos1 + 1, f1);
+        var n2 = s2.substr(0, pos2) + s2.substr(pos2 + 1, f2);
+        if (f1 < f2) { for (i = 0; i < f2 - f1; i++) n1 += "0"; }
+        else if (f1 > f2) { for (i = 0; i < f1 - f2; i++) n2 += "0"; }
+        res = n1 / n2;
+    }
+
+    var s = res.toString();
+    var pos = s.indexOf(".");
+    if (pos < 0) return s;
+    i = pos + 6;
+    while (i > pos && s.charAt(i) == "0") i--;
+    s = s.substr(0, pos + i);
+    return s;
+}
+
+function calculate(v1, v2, cl) {
+    var v;
+    if (cl == '+') v = Number(v1) + Number(v2);
+    else if (cl == '-') v = Number(v1) - Number(v2);
+    else if (cl == '×') v = calcucateMulti(v1, v2);
+    else if (cl == '÷') v = processDiv(v1, v2);
+    else v = 0;
+    return v;
+}
+
+/* ---------- 优先级搜索 ---------- */
+function searchCLPriority(formu, start, end) {
+    var arr = new Array();
+    var i = start;
+
+    while (i <= end && formu[i] != '×' && formu[i] != '÷') i++;
+
+    if (i > end) {
+        arr.push(start);
+    } else {
+        i = start;
+        while (i <= end && formu[i] != '+' && formu[i] != '-') i++;
+        if (i > end) {
+            arr.push(start);
+        } else {
+            i = start;
+            while (i <= end) {
+                while (i <= end && formu[i] != '×' && formu[i] != '÷') i++;
+                if (i <= end) {
+                    arr.push(i - 1);
+                    i++;
+                    while (i <= end && formu[i] != '+' && formu[i] != '-') i++;
+                }
+            }
+        }
+    }
+    return arr;
+}
+
+function searchMaxDeepth(formu, v1, v2) {
+    var maxc = 0, i, count = 0, pos = new Array(), firstp = -1;
+
+    for (i = 0; i < formu.length; i++) {
+        if (v1 == formu[i]) count++;
+        else if (v2 == formu[i]) count--;
+        if (count > maxc) { firstp = i; maxc = count; }
+    }
+
+    if (count > 0) return pos;
+
+    if (firstp >= 0) {
+        pos.push(firstp);
+        count = 0;
+        for (i = 0; i < formu.length; i++) {
+            if (v1 == formu[i]) count++;
+            else if (v2 == formu[i]) count--;
+            if (formu[i] == v1 && count >= maxc && i != firstp) pos.push(i);
+        }
+    }
+    return pos;
+}
+
+function searchHighestPriority(formu) {
+    var calArr = new Array();
+    var pos, idx, i;
+
+    pos = searchMaxDeepth(formu, "(", ")");
+    if (pos.length > 0) {
+        for (idx = 0; idx < pos.length; idx++) {
+            for (i = pos[idx] + 1; i < formu.length; i++)
+                if (formu[i] == ")") break;
+            calArr = calArr.concat(searchCLPriority(formu, pos[idx] + 1, i - 1));
+        }
+        return calArr;
+    }
+
+    pos = searchMaxDeepth(formu, "[", "]");
+    if (pos.length > 0) {
+        for (idx = 0; idx < pos.length; idx++) {
+            for (i = pos[idx] + 1; i < formu.length; i++)
+                if (formu[i] == "]") break;
+            calArr = calArr.concat(searchCLPriority(formu, pos[idx] + 1, i - 1));
+        }
+        return calArr;
+    }
+
+    pos = searchMaxDeepth(formu, "{", "}");
+    if (pos.length > 0) {
+        for (idx = 0; idx < pos.length; idx++) {
+            for (i = pos[idx] + 1; i < formu.length; i++)
+                if (formu[i] == "}") break;
+            calArr = calArr.concat(searchCLPriority(formu, pos[idx] + 1, i - 1));
+        }
+        return calArr;
+    }
+
+    calArr = searchCLPriority(formu, 0, formu.length - 1);
+    return calArr;
+}
+
+/* ---------- 生成脱式计算过程 ---------- */
+function showCalculate() {
+    var result = "";
+    var gf = new Array();
+
+    var idx = 0;
+    var sr;
+    var v;
+
+    while (idx < math_formu_arr.length) {
+        v = math_formu_arr[idx];
+        idx++;
+
+        if (!isDigital(v) && v != '.') {
+            gf.push(v);
+        } else {
+            sr = "";
+            do {
+                sr += v;
+                if (idx >= math_formu_arr.length) break;
+                v = math_formu_arr[idx];
+                idx++;
+            } while (isDigital(v) || v == '.');
+
+            gf.push(sr);
+            if (!isDigital(v) && v != '.') gf.push(v);
+        }
+    }
+
+    if (gf.length === 0) return;
+
+    result = "&nbsp;&nbsp;" + gf.join("");
+
+    var gf2;
+    var pos;
+    var guard = 0;
+
+    while (gf.length > 1 && guard < 500) {
+        guard++;
+        gf2 = new Array();
+        idx = 0;
+
+        var arr = searchHighestPriority(gf);
+
+        for (idx = arr.length - 1; idx >= 0; idx--) {
+            pos = arr[idx];
+            if (pos + 2 >= gf.length) continue;
+            if (!isNumberic(gf[pos]) || !isNumberic(gf[pos + 2]) || !isCalcuLable(gf[pos + 1])) continue;
+
+            var vr = calculate(gf[pos], gf[pos + 2], gf[pos + 1]);
+            gf[pos] = vr.toString();
+            gf.splice(pos + 1, 2);
+
+            if (pos - 1 >= 0) {
+                if (isLeftKuohao(gf[pos - 1]) && pos + 1 < gf.length && isRightKuohao(gf[pos + 1])) {
+                    gf.splice(pos + 1, 1);
+                    gf.splice(pos - 1, 1);
+                    pos--;
+                }
+            }
+        }
+
+        result += "<br>=" + gf.join("");
+
+        /* 防止死循环：如果这一轮没有化简，强制结束 */
+        if (gf2.length === 0 && gf.length === 1) break;
+    }
+
+    document.getElementById("mathArea").innerHTML = result;
+
+    math_stat = 0;
+}
+
+/* ---------- 检查 / 状态 ---------- */
+function check_Math() {
+    var gf = new Array();
+    copyArr(gf, math_formu_arr);
+
+    if (gf.length > 0) {
+        document.getElementById("createdivia").style.backgroundColor = "#9999ff";
+        document.getElementById("createdivia").disabled = "";
+    } else {
+        document.getElementById("createdivia").style.backgroundColor = "";
+        document.getElementById("createdivia").disabled = "disabled";
+    }
+}
+
+/* ---------- 数字输入 ---------- */
+function formula_1(v, divobj) {
+    if (math_stat == 0) clearAll();
+
+    if (v == '0' &&
+        !(listnum_count == 0 || math_formu_arr[math_formu_arr.length - 1] == '.') &&
+        !(math_formu_arr[math_formu_arr.length - 1] >= '0' && math_formu_arr[math_formu_arr.length - 1] <= '9'))
+        return;
+
+    if (math_stat == 0 || math_stat == 1 || math_stat == 2 || math_stat == 3 || math_stat == 5) {
+
+        if (math_stat == 1) {
+            if (listnum_count > 5) {
+                document.getElementById("infotip").innerHTML = "不能太大、太长！";
+                return;
+            } else if (listnum_count == 5) {
+                disableDigitalStat(true);
+            }
+        }
+
+        math_formu_arr.push(v);
+        math_formu = math_formu_arr.join("");
+        document.getElementById("math_formula").innerHTML = math_formu;
+
+        disableDotStat(false);
+        disableCalcuLableStat(false);
+        disableRightKuohaoStat(false);
+        disableLeftKuohaoStat(true);
+
+        if (v == '0' && listnum_count == 0) {
+            disableDigitalStat(true);
+            math_stat = 6;
+            math_stat_arr.push(6);
+        } else {
+            math_stat = 1;
+            math_stat_arr.push(1);
+        }
+
+        listnum_count++;
+        check_Math();
+    }
+}
+
+/* ---------- 运算符输入 ---------- */
+function formula_2(v, divobj) {
+    if (math_stat == 0) clearAll();
+
+    if (math_stat == 1 || math_stat == 4 || math_stat == 6) {
+        math_formu_arr.push(v);
+        math_formu = math_formu_arr.join("");
+        document.getElementById("math_formula").innerHTML = math_formu;
+
+        disableDigitalStat(false);
+        disableLeftKuohaoStat(false);
+
+        disableDotStat(true);
+        disableCalcuLableStat(true);
+        disableRightKuohaoStat(true);
+
+        listnum_count = 0;
+        dot_state = false;
+        math_stat = 2;
+        math_stat_arr.push(2);
+
+        check_Math();
+    }
+}
+
+/* ---------- 左括号输入 ---------- */
+function formula_3(v, divobj) {
+    if (math_stat == 0) clearAll();
+
+    if (math_stat == 0 || math_stat == 2 || math_stat == 3) {
+        math_formu_arr.push(v);
+        math_formu = math_formu_arr.join("");
+        document.getElementById("math_formula").innerHTML = math_formu;
+
+        disableDigitalStat(false);
+        disableDotStat(true);
+        disableCalcuLableStat(true);
+        disableRightKuohaoStat(true);
+
+        listnum_count = 0;
+        dot_state = false;
+        math_stat = 3;
+        math_stat_arr.push(3);
+
+        if (v == '[') Lrkuohu++;
+        else if (v == '(') Likuohu++;
+
+        check_Math();
+    }
+}
+
+/* ---------- 右括号输入 ---------- */
+function formula_4(v, divobj) {
+    if (math_stat == 0) clearAll();
+
+    if ((math_stat == 1 || math_stat == 4) &&
+        (v == ')' && Likuohu > 0 || v == ']' && Lrkuohu > 0)) {
+
+        math_formu_arr.push(v);
+        math_formu = math_formu_arr.join("");
+        document.getElementById("math_formula").innerHTML = math_formu;
+
+        disableCalcuLableStat(false);
+        disableDotStat(true);
+        disableDigitalStat(true);
+        disableLeftKuohaoStat(true);
+
+        listnum_count = 0;
+        dot_state = false;
+        math_stat = 4;
+        math_stat_arr.push(4);
+
+        if (v == ']') Lrkuohu--;
+        else if (v == ')') Likuohu--;
+
+        check_Math();
+    }
+}
+
+/* ---------- 小数点输入 ---------- */
+function formula_5(v, divobj) {
+    if (math_stat == 0) clearAll();
+
+    if (dot_state == true) return;
+
+    if (math_stat == 1 || math_stat == 6) {
+        math_formu_arr.push(v);
+        math_formu = math_formu_arr.join("");
+        document.getElementById("math_formula").innerHTML = math_formu;
+
+        disableDigitalStat(false);
+        disableDotStat(true);
+        disableLeftKuohaoStat(true);
+        disableRightKuohaoStat(true);
+        disableCalcuLableStat(true);
+
+        math_stat = 5;
+        math_stat_arr.push(5);
+
+        dot_state = true;
+        check_Math();
+    }
+}
+
+/* ---------- 键盘支持 ---------- */
+function isEleVisible(ele) {
+    if (!ele || !ele.getBoundingClientRect) return true;
+    var rect = ele.getBoundingClientRect();
+    var top = rect.top, right = rect.right, bottom = rect.bottom, left = rect.left;
+    var w = window.innerWidth, h = window.innerHeight;
+    if (bottom < 0 || top > h) return false;
+    if (right < 0 || left > w) return false;
+    return true;
+}
+
+function onKeydown(e) {
+    var activeObj = document.activeElement;
+    if (activeObj && (activeObj.type == "text" || activeObj.type == "textarea")) {
+        if (isEleVisible(activeObj)) return;
+        else activeObj.blur();
+    }
+
+    var key = '';
+    var obj = null;
+
+    switch (e.keyCode) {
+        case 48://0
+            if (e.shiftKey) {
+                key = ')';
+                obj = document.getElementById("numb_rightlitB");
+                if (obj.disabled == false) formula_4(key, obj);
+                e.preventDefault();
+            } else {
+                key = '0';
+                obj = document.getElementById("numb_0");
+                if (obj.disabled == false) formula_1(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 96:
+            key = '0'; obj = document.getElementById("numb_0");
+            if (obj.disabled == false) formula_1(key, obj);
+            e.preventDefault();
+            break;
+        case 49:
+            if (!e.shiftKey) {
+                key = '1'; obj = document.getElementById("numb_1");
+                if (obj.disabled == false) formula_1(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 97:
+            key = '1'; obj = document.getElementById("numb_1");
+            if (obj.disabled == false) formula_1(key, obj);
+            e.preventDefault();
+            break;
+        case 50:
+            if (!e.shiftKey) {
+                key = '2'; obj = document.getElementById("numb_2");
+                if (obj.disabled == false) formula_1(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 98:
+            key = '2'; obj = document.getElementById("numb_2");
+            if (obj.disabled == false) formula_1(key, obj);
+            e.preventDefault();
+            break;
+        case 51:
+            if (!e.shiftKey) {
+                key = '3'; obj = document.getElementById("numb_3");
+                if (obj.disabled == false) formula_1(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 99:
+            key = '3'; obj = document.getElementById("numb_3");
+            if (obj.disabled == false) formula_1(key, obj);
+            e.preventDefault();
+            break;
+        case 52:
+            if (!e.shiftKey) {
+                key = '4'; obj = document.getElementById("numb_4");
+                if (obj.disabled == false) formula_1(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 100:
+            key = '4'; obj = document.getElementById("numb_4");
+            if (obj.disabled == false) formula_1(key, obj);
+            e.preventDefault();
+            break;
+        case 53:
+            if (!e.shiftKey) {
+                key = '5'; obj = document.getElementById("numb_5");
+                if (obj.disabled == false) formula_1(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 101:
+            key = '5'; obj = document.getElementById("numb_5");
+            if (obj.disabled == false) formula_1(key, obj);
+            e.preventDefault();
+            break;
+        case 54:
+            if (!e.shiftKey) {
+                key = '6'; obj = document.getElementById("numb_6");
+                if (obj.disabled == false) formula_1(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 102:
+            key = '6'; obj = document.getElementById("numb_6");
+            if (obj.disabled == false) formula_1(key, obj);
+            e.preventDefault();
+            break;
+        case 55:
+            if (!e.shiftKey) {
+                key = '7'; obj = document.getElementById("numb_7");
+                if (obj.disabled == false) formula_1(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 103:
+            key = '7'; obj = document.getElementById("numb_7");
+            if (obj.disabled == false) formula_1(key, obj);
+            e.preventDefault();
+            break;
+        case 56:
+            if (e.shiftKey) {
+                key = '×'; obj = document.getElementById("numb_mul");
+                if (obj.disabled == false) formula_2(key, obj);
+                e.preventDefault();
+            } else {
+                key = '8'; obj = document.getElementById("numb_8");
+                if (obj.disabled == false) formula_1(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 104:
+            key = '8'; obj = document.getElementById("numb_8");
+            if (obj.disabled == false) formula_1(key, obj);
+            e.preventDefault();
+            break;
+        case 106:
+            key = '×'; obj = document.getElementById("numb_mul");
+            if (obj.disabled == false) formula_2(key, obj);
+            e.preventDefault();
+            break;
+        case 57:
+            if (e.shiftKey) {
+                key = '('; obj = document.getElementById("numb_LeftlitB");
+                if (obj.disabled == false) formula_3(key, obj);
+                e.preventDefault();
+            } else {
+                key = '9'; obj = document.getElementById("numb_9");
+                if (obj.disabled == false) formula_1(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 105:
+            key = '9'; obj = document.getElementById("numb_9");
+            if (obj.disabled == false) formula_1(key, obj);
+            e.preventDefault();
+            break;
+        case 8://backspace
+            backspace();
+            e.preventDefault();
+            break;
+        case 13://enter
+            showCalculate();
+            e.preventDefault();
+            break;
+        case 187://= / +
+            if (e.shiftKey) {
+                key = '+'; obj = document.getElementById("numb_add");
+                if (obj.disabled == false) formula_2(key, obj);
+                e.preventDefault();
+            } else {
+                showCalculate();
+                e.preventDefault();
+            }
+            break;
+        case 107:
+            key = '+'; obj = document.getElementById("numb_add");
+            if (obj.disabled == false) formula_2(key, obj);
+            e.preventDefault();
+            break;
+        case 191:// /
+            if (!e.shiftKey) {
+                key = '÷'; obj = document.getElementById("numb_div");
+                if (obj.disabled == false) formula_2(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 111:
+            key = '÷'; obj = document.getElementById("numb_div");
+            if (obj.disabled == false) formula_2(key, obj);
+            e.preventDefault();
+            break;
+        case 189:
+            if (!e.shiftKey) {
+                key = '-'; obj = document.getElementById("numb_sub");
+                if (obj.disabled == false) formula_2(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 109:
+            key = '-'; obj = document.getElementById("numb_sub");
+            if (obj.disabled == false) formula_2(key, obj);
+            e.preventDefault();
+            break;
+        case 190:
+            if (!e.shiftKey) {
+                key = '.'; obj = document.getElementById("numb_dot");
+                if (obj.disabled == false) formula_5(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 110:
+            key = '.'; obj = document.getElementById("numb_dot");
+            if (obj.disabled == false) formula_5(key, obj);
+            e.preventDefault();
+            break;
+        case 32:
+            clearAll();
+            e.preventDefault();
+            break;
+        case 219:
+            if (!e.shiftKey) {
+                key = '['; obj = document.getElementById("numb_LeftlargeB");
+                if (obj.disabled == false) formula_3(key, obj);
+                e.preventDefault();
+            }
+            break;
+        case 221:
+            if (!e.shiftKey) {
+                key = ']'; obj = document.getElementById("numb_rightlargeB");
+                if (obj.disabled == false) formula_4(key, obj);
+                e.preventDefault();
+            }
+            break;
+    }
+}
+
+/* ---------- 初始化 ---------- */
+function Init() {
+    nScaleMulti = 1;
+    gproduct.splice(0, gproduct.length);
+
+    dot_state = false;
+    math_stat = 0;
+    math_stat_arr.splice(0, math_stat_arr.length);
+    math_stat_arr.push(0);
+
+    disableLeftKuohaoStat(false);
+
+    document.addEventListener("keydown", onKeydown);
+}
+</script>
+
+<script type="text/javascript">
+    Init();
+</script>
+
+</body>
+</html>
